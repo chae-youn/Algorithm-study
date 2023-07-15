@@ -1,0 +1,11 @@
+#입력
+n = int(input())
+array = list(map(int,input().split()))
+
+array.sort()
+answer = temp = 0
+
+for i in array:
+  temp += i #그 줄의 합 더하기
+  answer += temp #전체 합에 그 줄의 합 더하기
+print(answer)
