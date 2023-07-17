@@ -1,0 +1,13 @@
+n, m = map(int,input().split())
+
+x = y = price = []
+for i in range(m):
+  price = list(map(int,input().split()))
+  x.append(price[0])
+  y.append(price[1])
+  print(x)
+
+min_pack = min(x)
+min_sing = min(y)
+
+print(min(min_pack*(n//6+1), min_pack*(n//6)+min_sing*(n%6), min_sing*n))
