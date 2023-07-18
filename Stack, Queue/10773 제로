@@ -1,0 +1,12 @@
+#10773 제로
+k = int(input())
+money = []
+
+for i in range(k):
+  num = int(input())
+  if num != 0:
+    money.append(num)
+  else:
+    money.pop()
+
+print(sum(money))
