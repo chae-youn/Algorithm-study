@@ -1,11 +1,11 @@
 n, m = map(int,input().split())
 
-x = y = price = []
+x = []
+y = []
 for i in range(m):
-  price = list(map(int,input().split()))
-  x.append(price[0])
-  y.append(price[1])
-  print(x)
+  a, b = map(int,input().split())
+  x.append(a)
+  y.append(b)
 
 min_pack = min(x)
 min_sing = min(y)
