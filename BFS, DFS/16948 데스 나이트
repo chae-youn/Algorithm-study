@@ -1,0 +1,30 @@
+#16948 데스 나이트
+
+from collections import deque
+
+#입력받기
+n = int(input())
+r1, c1, r2, c2 = map(int,input().split())
+
+#이동 방향 정의
+dy = [-2, -2, 0, 0, 2, 2]
+dx = [-1, 1, -2, 2, -1, 1]
+
+queue = deque()
+queue.append((r1,c1))
+
+#이동횟수 기록할 그래프
+graph = [[-1]*n for _ in range(n)]
+graph[r1][c1] = 0
+
+#BFS
+while queue:
+  y, x = queue.popleft()
+  for i in range(6):
+    ny = y + dy[i]
+    nx = x + dx[i]
+    if (0<=nx<n and 0<=ny<n and graph[ny][nx] == -1):
+      queue.append((ny,nx))
+      graph[ny][nx] = graph[y][x]+1    
+    
+print(graph[r2][c2])
