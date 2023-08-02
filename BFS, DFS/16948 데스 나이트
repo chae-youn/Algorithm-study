@@ -2,29 +2,28 @@
 
 from collections import deque
 
-#입력받기
 n = int(input())
+graph = [[-1]*n for _ in range(n)]
 r1, c1, r2, c2 = map(int,input().split())
+graph[r1][c1] = 0
 
-#이동 방향 정의
-dy = [-2, -2, 0, 0, 2, 2]
-dx = [-1, 1, -2, 2, -1, 1]
+dx = [-2, -2, 0, 0, 2, 2]
+dy = [-1, 1, -2, 2, -1, 1]
 
 queue = deque()
 queue.append((r1,c1))
 
-#이동횟수 기록할 그래프
-graph = [[-1]*n for _ in range(n)]
-graph[r1][c1] = 0
-
 #BFS
 while queue:
-  y, x = queue.popleft()
+  x, y = queue.popleft()
   for i in range(6):
-    ny = y + dy[i]
     nx = x + dx[i]
-    if (0<=nx<n and 0<=ny<n and graph[ny][nx] == -1):
-      queue.append((ny,nx))
-      graph[ny][nx] = graph[y][x]+1    
-    
+    ny = y + dy[i]
+    if nx <= -1 or nx >= n or ny <= -1 or ny >= n:
+      continue
+    if graph[nx][ny] == -1:
+      graph[nx][ny] = graph[x][y]+1
+      queue.append((nx,ny))
+
+
 print(graph[r2][c2])
