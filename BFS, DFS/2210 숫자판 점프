@@ -3,26 +3,32 @@
 import sys
 input = sys.stdin.readline
 
+graph = []
+for _ in range(5):
+  graph.append(list(map(str, input().split())))
+
+dx = [1, -1, 0, 0]
+dy = [0, 0, 1, -1]
+
+numbers = []
+
 def dfs(x,y,num):
+  
   num += graph[x][y]
   
-  if len(num) == 6:
-    result.append(num)
-    return
-  
+  if len(num)==6:
+      numbers.append(num)
+      return
+    
   for i in range(4):
     nx = x + dx[i]
     ny = y + dy[i]
-    if 0<=nx<5 and 0<=ny<5:
-      dfs(nx,ny,num)     
-
-graph = list(list(map(str,input().split())) for _ in range(5))
-dx = [1, -1, 0, 0]
-dy = [0, 0, 1, -1]
-result = []
-
-for x in range(5):
-  for y in range(5):
-    dfs(x,y,"")
+    if nx >= 5 or nx <= -1 or ny >= 5 or ny <= -1:
+      continue
+    dfs(nx,ny,num)
     
-print(len(set(result)))
+for i in range(5):
+  for j in range(5):
+    dfs(i,j,'')
+    
+print(len(set(numbers)))
